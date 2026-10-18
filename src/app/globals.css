@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette — Siberiano: caldo, naturale, premium */
+  --color-crema: #FAF6EE;
+  --color-crema-2: #F2EBDC;
+  --color-sabbia: #E4D7BC;
+  --color-tabacco: #B58A4F;
+  --color-bronzo: #8C6537;
+  --color-caffe: #4A3522;
+  --color-inchiostro: #2A1F14;
+  --color-neve: #FFFFFF;
+  --color-foglia: #6B7A4B;
+
+  /* Tipografia (variabili iniettate da next/font in layout) */
+  --font-display: var(--font-cormorant), "Iowan Old Style", Georgia, serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Spaziature semantiche */
+  --radius-soft: 1.25rem;
+  --radius-pill: 999px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-crema);
+    color: var(--color-inchiostro);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  ::selection {
+    background: var(--color-tabacco);
+    color: var(--color-neve);
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-body { font-family: var(--font-body); }
+
+  .container-edge {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-edge { padding-inline: 2.5rem; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-bronzo);
+    font-weight: 500;
+  }
+
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .divider-leaf {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-tabacco);
+  }
+  .divider-leaf::before,
+  .divider-leaf::after {
+    content: "";
+    width: 3rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.4;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-slow,
+    .animate-fade-up { animation: none; }
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up { animation: fade-up 0.9s ease-out both; }
+}
