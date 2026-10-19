@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://coccolami.ch"),
+  metadataBase: new URL("https://siberiano.ch"),
   title: {
     default: "Coccolami — Allevamento di gatti siberiani in Ticino",
     template: "%s · Coccolami",

@@ -17,7 +17,7 @@ export function FormLead() {
       `${data.get("messaggio")}`,
     ].join("\n");
     window.location.href = `mailto:${allevamento.email}?subject=${encodeURIComponent(
-      "Richiesta da coccolami.ch",
+      "Richiesta da siberiano.ch",
     )}&body=${encodeURIComponent(corpo)}`;
     setInviato(true);
   }

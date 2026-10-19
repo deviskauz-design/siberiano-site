@@ -24,7 +24,7 @@ export function FormContatti() {
       `${data.get("messaggio")}`,
     ].join("\n");
     const url = `mailto:${allevamento.email}?subject=${encodeURIComponent(
-      "Richiesta da coccolami.ch — " + (data.get("motivo") || "info"),
+      "Richiesta da siberiano.ch — " + (data.get("motivo") || "info"),
     )}&body=${encodeURIComponent(corpo)}`;
     window.location.href = url;
     setInviato(true);
