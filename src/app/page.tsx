@@ -28,24 +28,10 @@ function Hero() {
         <div className="absolute -bottom-40 -left-20 w-[35rem] h-[35rem] rounded-full bg-[var(--color-foglia)]/10 blur-3xl" />
       </div>
 
-      <div className="absolute right-[3%] top-1/2 -translate-y-1/2 w-[36rem] h-[44rem] hidden lg:block">
-        <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-[var(--color-tabacco)]/20 animate-float-slow">
-          <Image
-            src={immagini.hero}
-            alt="Gatto siberiano dell'allevamento Coccolami"
-            fill
-            priority
-            sizes="(min-width: 1024px) 36rem, 0px"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-inchiostro)]/30 via-transparent to-transparent" />
-        </div>
-      </div>
-
-      <div className="relative container-edge grid lg:grid-cols-12 gap-10 py-20">
-        <div className="lg:col-span-7 animate-fade-up">
+      <div className="relative container-edge grid lg:grid-cols-12 gap-10 lg:gap-12 items-center py-16 lg:py-20">
+        <div className="lg:col-span-6 xl:col-span-7 animate-fade-up">
           <span className="eyebrow">Allevamento famigliare · Breganzona</span>
-          <h1 className="mt-6 text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95]">
+          <h1 className="mt-6 text-5xl md:text-7xl xl:text-[5.5rem] leading-[0.95]">
             Gatti siberiani <em className="font-display italic text-[var(--color-bronzo)]">cresciuti</em> in famiglia.
           </h1>
           <p className="mt-8 text-lg md:text-xl text-[var(--color-caffe)] max-w-xl leading-relaxed">
@@ -71,9 +57,23 @@ function Hero() {
             </a>
           </div>
         </div>
+
+        <div className="lg:col-span-6 xl:col-span-5">
+          <div className="relative aspect-[4/3] lg:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-[var(--color-tabacco)]/20 lg:animate-float-slow">
+            <Image
+              src={immagini.hero}
+              alt="Gatto siberiano dell'allevamento Coccolami"
+              fill
+              priority
+              sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-inchiostro)]/30 via-transparent to-transparent" />
+          </div>
+        </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--color-bronzo)] text-xs tracking-widest uppercase animate-float-slow">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--color-bronzo)] text-xs tracking-widest uppercase animate-float-slow hidden lg:block">
         scorri ↓
       </div>
     </section>
