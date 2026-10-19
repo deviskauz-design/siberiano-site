@@ -8,3 +8,5 @@ next-env.d.ts
 
 # Foto originali ad alta risoluzione (solo locale)
 public/img/archivio/
+
+.vercel
