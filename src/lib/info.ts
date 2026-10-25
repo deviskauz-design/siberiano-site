@@ -41,53 +41,21 @@ export type Gatto = {
 };
 
 export type Cucciolo = {
-  id: string;
-  descrizione: string;
+  razza: string;
+  colore: string;
   sesso: "maschio" | "femmina";
   foto: string;
-  fotoExtra?: string[];
 };
 
-export const cucciolataAttuale = {
-  presente: true,
-  titolo: "Cuccioli disponibili",
-  fotoGruppo: "/img/sito/cuccioli/_DSC2836.jpg",
-  cuccioli: [
-    {
-      id: "f-macchia-bianca",
-      descrizione: "Black tabby & white, macchia bianca sul naso",
-      sesso: "femmina",
-      foto: "/img/sito/cuccioli/_DSC2983.jpg",
-    },
-    {
-      id: "m-tabby",
-      descrizione: "Black tabby & white",
-      sesso: "maschio",
-      foto: "/img/sito/cuccioli/_DSC2972.jpg",
-      fotoExtra: ["/img/sito/cuccioli/_DSC2980.jpg"],
-    },
-    {
-      id: "m-arancione",
-      descrizione: "Neva Masquerade red point",
-      sesso: "maschio",
-      foto: "/img/sito/cuccioli/_DSC2923.jpg",
-    },
-    {
-      id: "m-grigio",
-      descrizione: "Neva Masquerade blue point",
-      sesso: "maschio",
-      foto: "/img/sito/cuccioli/_DSC3013.jpg",
-      fotoExtra: ["/img/sito/cuccioli/_DSC2904.jpg"],
-    },
-    {
-      id: "f-grigio",
-      descrizione: "Neva Masquerade blue point",
-      sesso: "femmina",
-      foto: "/img/sito/cuccioli/_DSC3026.jpg",
-      fotoExtra: ["/img/sito/cuccioli/_DSC3008.jpg"],
-    },
-  ] satisfies Cucciolo[],
-} as const;
+// Lista vuota = nessun cucciolo disponibile, la home mostra la lista d'attesa.
+export const cuccioliDisponibili: Cucciolo[] = [
+  {
+    razza: "Siberiano Neva Masquerade",
+    colore: "Blue point",
+    sesso: "maschio",
+    foto: "/img/sito/cuccioli/_DSC3013.jpg",
+  },
+];
 
 export const gatti: { femmine: Gatto[]; maschi: Gatto[] } = {
   femmine: [

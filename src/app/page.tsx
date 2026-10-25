@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { allevamento, gatti, immagini, cucciolataAttuale } from "@/lib/info";
+import { allevamento, gatti, immagini, cuccioliDisponibili } from "@/lib/info";
 import { LeafDivider, PawIcon } from "@/components/PawIcon";
 import { FotoGatto } from "@/components/FotoGatto";
 import { FormLead } from "@/components/FormLead";
@@ -228,59 +228,84 @@ function AnteprimaGatti() {
 }
 
 function Cucciolata() {
-  const totale = cucciolataAttuale.cuccioli.length;
-  const femmine = cucciolataAttuale.cuccioli.filter((c) => c.sesso === "femmina").length;
-  const maschi = cucciolataAttuale.cuccioli.filter((c) => c.sesso === "maschio").length;
+  const n = cuccioliDisponibili.length;
   return (
     <section className="bg-[var(--color-inchiostro)] text-[var(--color-crema)] py-24 md:py-32">
-      <div className="container-edge">
-        <div className="grid lg:grid-cols-12 gap-12 items-end mb-16">
-          <div className="lg:col-span-7">
-            <span className="eyebrow text-[var(--color-tabacco)]">Cucciolata disponibile</span>
-            <h2 className="mt-3 text-4xl md:text-6xl">
-              {totale} cuccioli, <em className="italic text-[var(--color-tabacco)]">pronti</em> a casa tua.
-            </h2>
-            <p className="mt-6 text-lg opacity-80 leading-relaxed max-w-xl">
-              {femmine} femmine e {maschi} maschi, cresciuti in casa con noi. Scrivici per
-              conoscerli.
-            </p>
-          </div>
-          <div className="lg:col-span-5 flex lg:justify-end">
+      <div className="container-edge grid lg:grid-cols-12 gap-12 items-center">
+        <div className={n > 1 ? "lg:col-span-12" : "lg:col-span-7"}>
+          <span className="eyebrow text-[var(--color-tabacco)]">
+            {n > 0 ? "Cuccioli disponibili" : "Cuccioli"}
+          </span>
+          <h2 className="mt-3 text-4xl md:text-6xl">
+            {n === 0 && (
+              <>
+                La prossima cucciolata? <em className="italic text-[var(--color-tabacco)]">Scrivici</em>.
+              </>
+            )}
+            {n === 1 && (
+              <>
+                Ancora <em className="italic text-[var(--color-tabacco)]">un cucciolo</em> cerca casa.
+              </>
+            )}
+            {n > 1 && (
+              <>
+                {n} cuccioli <em className="italic text-[var(--color-tabacco)]">cercano casa</em>.
+              </>
+            )}
+          </h2>
+          <p className="mt-6 text-lg opacity-80 leading-relaxed max-w-xl">
+            {n > 0
+              ? "Cresciuti in casa con noi. Scrivici per altre foto, video o per venire a trovarci."
+              : "Al momento non abbiamo cuccioli disponibili. Lascia il tuo contatto: ti avvisiamo quando nascono i prossimi."}
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4 items-center">
             <a
               href="#contatto"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--color-tabacco)] text-[var(--color-inchiostro)] hover:bg-[var(--color-crema)] transition"
             >
-              Prenota il tuo →
+              {n > 0 ? "Chiedi informazioni →" : "Iscrivimi alla lista d'attesa →"}
             </a>
+            <Link
+              href="/galleria"
+              className="inline-flex items-center gap-2 text-[var(--color-tabacco)] hover:text-[var(--color-crema)] transition"
+            >
+              <span className="border-b border-current pb-1">Tutte le cucciolate nella galleria</span>
+              <span>→</span>
+            </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {cucciolataAttuale.cuccioli.map((c) => (
-            <article
-              key={c.id}
-              className="group relative overflow-hidden rounded-[var(--radius-soft)] aspect-[3/4]"
-            >
-              <Image
-                src={c.foto}
-                alt={c.descrizione}
-                fill
-                sizes="(min-width:1024px) 20vw, (min-width:768px) 33vw, 50vw"
-                className="object-cover group-hover:scale-105 transition duration-700"
-              />
-              <span className="absolute top-3 right-3 text-[0.65rem] tracking-widest uppercase px-2.5 py-1 rounded-full bg-[var(--color-tabacco)] text-[var(--color-inchiostro)]">
-                {c.sesso === "femmina" ? "♀ Fem." : "♂ Mas."}
-              </span>
-              <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-[var(--color-inchiostro)]/95 to-transparent">
-                <p className="text-xs leading-tight opacity-90">{c.descrizione}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <p className="mt-10 text-sm opacity-60 text-center">
-          Scrivici su WhatsApp per altre foto e video.
-        </p>
+        {n > 0 && (
+          <div
+            className={
+              n === 1
+                ? "lg:col-span-5"
+                : "lg:col-span-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            }
+          >
+            {cuccioliDisponibili.map((c) => (
+              <article
+                key={c.foto}
+                className="group relative overflow-hidden rounded-[var(--radius-soft)] aspect-[4/5]"
+              >
+                <Image
+                  src={c.foto}
+                  alt={`${c.razza}, ${c.colore}`}
+                  fill
+                  sizes={n === 1 ? "(min-width:1024px) 40vw, 100vw" : "(min-width:1024px) 25vw, 50vw"}
+                  className="object-cover group-hover:scale-105 transition duration-700"
+                />
+                <span className="absolute top-4 right-4 text-[0.7rem] tracking-widest uppercase px-3 py-1 rounded-full bg-[var(--color-tabacco)] text-[var(--color-inchiostro)]">
+                  {c.sesso === "femmina" ? "♀ Femmina" : "♂ Maschio"}
+                </span>
+                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-[var(--color-inchiostro)]/95 via-[var(--color-inchiostro)]/50 to-transparent">
+                  <p className="font-display text-2xl leading-tight">{c.razza}</p>
+                  <p className="mt-1 text-sm opacity-85">{c.colore}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -289,11 +314,20 @@ function Cucciolata() {
 function Galleria() {
   return (
     <section className="container-edge py-28 md:py-36">
-      <div className="max-w-2xl mb-14">
-        <span className="eyebrow">Galleria</span>
-        <h2 className="mt-3 text-4xl md:text-6xl">
-          Una giornata <em className="italic text-[var(--color-bronzo)]">a casa nostra</em>.
-        </h2>
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Galleria</span>
+          <h2 className="mt-3 text-4xl md:text-6xl">
+            Una giornata <em className="italic text-[var(--color-bronzo)]">a casa nostra</em>.
+          </h2>
+        </div>
+        <Link
+          href="/galleria"
+          className="self-start inline-flex items-center gap-2 text-[var(--color-bronzo)] hover:text-[var(--color-caffe)] transition"
+        >
+          <span className="border-b border-current pb-1">Vedi tutte le foto</span>
+          <span>→</span>
+        </Link>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         {immagini.galleria.map((src, i) => (

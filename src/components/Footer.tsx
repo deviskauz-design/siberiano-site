@@ -25,6 +25,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link href="/" className="hover:text-[var(--color-tabacco)] transition">Casa</Link></li>
             <li><Link href="/gatti" className="hover:text-[var(--color-tabacco)] transition">I nostri gatti</Link></li>
+            <li><Link href="/galleria" className="hover:text-[var(--color-tabacco)] transition">Galleria</Link></li>
             <li><Link href="/#contatto" className="hover:text-[var(--color-tabacco)] transition">Contattaci</Link></li>
           </ul>
         </div>

@@ -7,6 +7,7 @@ import { PawIcon } from "./PawIcon";
 const voci = [
   { href: "/", label: "Casa" },
   { href: "/gatti", label: "I nostri gatti" },
+  { href: "/galleria", label: "Galleria" },
   { href: "/#contatto", label: "Contatti" },
 ];
 
@@ -37,7 +38,7 @@ export function Navbar() {
           <span className="font-display text-2xl tracking-tight">Coccolami</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {voci.map((v) => (
             <Link
               key={v.href}
@@ -58,7 +59,7 @@ export function Navbar() {
         <button
           aria-label="Apri menu"
           onClick={() => setOpen((o) => !o)}
-          className="md:hidden grid place-items-center w-10 h-10 rounded-full border border-[var(--color-sabbia)]"
+          className="lg:hidden grid place-items-center w-10 h-10 rounded-full border border-[var(--color-sabbia)]"
         >
           <span className="flex flex-col gap-1.5">
             <span className={`block h-px w-5 bg-current transition ${open ? "translate-y-1.5 rotate-45" : ""}`} />
@@ -69,7 +70,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-[var(--color-crema)] border-t border-[var(--color-sabbia)]/60">
+        <div className="lg:hidden bg-[var(--color-crema)] border-t border-[var(--color-sabbia)]/60">
           <nav className="container-edge flex flex-col py-4">
             {voci.map((v) => (
               <Link
