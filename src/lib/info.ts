@@ -66,7 +66,7 @@ export const gatti: { femmine: Gatto[]; maschi: Gatto[] } = {
     },
     {
       nome: "Tina",
-      stato: "sterilizzata",
+      stato: "attiva",
       foto: F("1670"), // balcone con vista montagne, molto bella
     },
     {
